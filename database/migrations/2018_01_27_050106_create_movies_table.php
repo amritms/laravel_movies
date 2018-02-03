@@ -19,7 +19,7 @@ class CreateMoviesTable extends Migration
             $table->year('release_date');
             $table->decimal('ratings');
             $table->string('keywords');
-            $table->string('taglines');
+            $table->string('storyline');
             $table->integer('language_id');
             $table->integer('genre_id');
             $table->string('image');
