@@ -18,7 +18,7 @@ class MovieController extends Controller
     {
         $movies = Movie::all();
 
-        return view('movies.index', compact('movies'));
+        return view('admin.movies.index', compact('movies'));
     }
 
     /**
@@ -39,9 +39,12 @@ class MovieController extends Controller
      */
     public function store(MovieStoreRequest $request)
     {
+        $input = $request->validated();
+        Movie::create($input);
 
+        session()->flash('success', 'Movie successfully created.');
 
-        dd($request->all());
+        return redirect('admin/movies');
     }
 
     /**

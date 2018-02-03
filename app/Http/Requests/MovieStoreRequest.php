@@ -25,13 +25,13 @@ class MovieStoreRequest extends FormRequest
     {
         return [
                 'name' => 'required|max:255',
-                'release_year' => 'required',
-                'storyline' => '',
-                'ratings' => '',
-                'keywords' => '',
-                'taglines' => '',
-                'language_id' => '',
-                'genre_id' => ''
+                'release_date' => 'required',
+                'storyline' => 'required',
+                'ratings' => 'required',
+                'keywords' => 'required',
+                'taglines' => 'required',
+                'language_id' => 'required',
+                'genre_id' => 'required'
         ];
     }
 }
