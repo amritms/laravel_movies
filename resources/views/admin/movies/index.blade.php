@@ -19,15 +19,17 @@
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($movies as $movie)
                         <tr>
-                            <td><a>Maze Runner: The Death Cure</a></td>
-                            <td>2018</td>
-                            <td>2018-1-31 20:30</td>
+                            <td><a>{{ $movie->name }}</a></td>
+                            <td>{{ $movie->release_date }}</td>
+                            <td>{{ $movie->created_at }}</td>
                             <td>
-                                <a><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a> |
+                                <a href="{!!  url("admin/movies/{$movie->id}/edit")!!}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a> |
                                 <a><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
                             </td>
                         </tr>
+                        @endforeach
                         <tr>
                             <td><a>Maze Runner: The Death Cure</a></td>
                             <td>2018</td>

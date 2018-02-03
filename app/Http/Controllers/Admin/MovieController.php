@@ -34,7 +34,7 @@ class MovieController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param MovieStoreRequest|Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(MovieStoreRequest $request)
@@ -50,35 +50,44 @@ class MovieController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param Movie $movie
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
     public function show(Movie $movie)
     {
-        return view('movies.show', compact('movie'));
+        return view('admin.movies.show', compact('movie'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param Movie $movie
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function edit($id)
+    public function edit(Movie $movie)
     {
-        //
+        return view('admin.movies.edit', compact('movie'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param MovieStoreRequest|Request $request
+     * @param Movie $movie
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function update(Request $request, $id)
+    public function update(MovieStoreRequest $request, Movie $movie)
     {
-        //
+        $input = $request->validated();
+
+        session()->flash('success', 'Movie successfully edited.');
+
+        $movie->update($input);
+
+        return redirect('admin/movies');
     }
 
     /**
