@@ -60,9 +60,9 @@
 
     <!-- Budget -->
         <div class="form-group">
-            <label for="keywords" class="col-sm-2 control-label">Keywords</label>
+            <label for="keywords" class="col-sm-2 control-label">Plot Keywords</label>
             <div class="col-sm-10">
-                {!! Form::text('keywords', old('keywords'), ['class'=>"form-control", 'placeholder'=>"keywords"]) !!}
+                {!! Form::select('keywords', [1=> 'world war two', 2 => 'soldier', 3 => 'evacuation'], old('keywords'), ['class'=>"form-control js-example-basic-multiple", 'multiple' => 'multiple']) !!}
             </div>
         </div>
 
@@ -70,7 +70,7 @@
         <div class="form-group">
             <label for="movie-banner" class="col-sm-2 control-label">Image</label>
             <div class="col-sm-10">
-                <input type="file" class="form-control" id="movie-banner">
+                {!! Form::file('image', ['class'=>"form-control", 'id'=>"movie-banner"]) !!}
             </div>
         </div>
 
@@ -78,7 +78,7 @@
         <div class="form-group">
             <label for="video" class="col-sm-2 control-label">Video Link</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="video">
+                {!! Form::text('video', old('video'), ['class'=>"form-control", 'placeholder'=>"Video Link"]) !!}
             </div>
         </div>
 
@@ -104,6 +104,16 @@
         @endforeach
     @endif
 </ul>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<script>
+    // In your Javascript (external .js resource or <script> tag)
+    $(document).ready(function() {
+        $('.js-example-basic-single').select2();
+        $('.js-example-basic-multiple').select2();
+    });
+</script>
 @endsection
 
 @section('admin_footer')

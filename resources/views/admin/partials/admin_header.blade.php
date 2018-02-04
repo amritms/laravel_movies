@@ -14,6 +14,7 @@
    		<link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css"/>
   	 	<link rel="stylesheet" href="css/default.css"/>
    		<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+		<script src="{!! url('js/jquery.1.1.4.min.js') !!}"></script>
    </head>
 <body>
 <style>

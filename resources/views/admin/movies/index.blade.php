@@ -30,14 +30,6 @@
                             </td>
                         </tr>
                         @endforeach
-                        <tr>
-                            <td><a>Maze Runner: The Death Cure</a></td>
-                            <td>2018</td>
-                            <td>2018-1-31 20:30</td>
-                            <td>
-                                <a><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a> |
-                                <a><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
-                        </tr>
                         </tbody>
                     </table>
                 </div>

@@ -12,7 +12,7 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="{!! url('js/jquery.1.1.4.min.js') !!}"></script>
+    
     <script src="{!! url('js/moment.2.15.1.min.js') !!}"></script>
     {{--<script src="{{ URL::asset('js/bootstrap.3.3.7.min.js) }}" crossorigin="anonymous"></script>--}}
    	<script src="{!! url('js/banner-bootstrap.js') !!}"></script>
