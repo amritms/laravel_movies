@@ -21,12 +21,21 @@
                         <tbody>
                         @foreach($movies as $movie)
                         <tr>
-                            <td><a>{{ $movie->name }}</a></td>
+                            <td><a href="{!! url("admin/movies/{$movie->id}")!!}">{{ $movie->name }}</a></td>
                             <td>{{ $movie->release_date }}</td>
                             <td>{{ $movie->created_at }}</td>
                             <td>
                                 <a href="{!!  url("admin/movies/{$movie->id}/edit")!!}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a> |
-                                <a><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+
+                                {!!
+                                 Form::open([
+                                    'method' => 'delete',
+                                    'route' => ['movies.destroy', $movie->id]
+                                 ])
+                                 !!}
+                                {!! Form::submit('Delete', ['class'=>"glyphicon glyphicon-trash", 'aria-hidden'=>"true"]) !!}
+
+                                {!! Form::close() !!}
                             </td>
                         </tr>
                         @endforeach

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Country;
+use App\Genre;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MovieStoreRequest;
 use App\Movie;
@@ -28,7 +30,10 @@ class MovieController extends Controller
      */
     public function create()
     {
-        return view('admin.movies.create');
+        $countries = Country::pluck('name', 'id');
+        $genres = Genre::pluck('name', 'id');
+
+        return view('admin.movies.create', compact('countries', 'genres'));
     }
 
     /**
@@ -40,7 +45,13 @@ class MovieController extends Controller
     public function store(MovieStoreRequest $request)
     {
         $input = $request->validated();
-        Movie::create($input);
+
+        $movie = Movie::create($input);
+
+        $genre = request()->get('genre_id');
+
+        // genre - pivot
+        $movie->genres()->attach($genre);
 
         session()->flash('success', 'Movie successfully created.');
 
@@ -93,11 +104,18 @@ class MovieController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Movie $movie
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function destroy($id)
+    public function destroy(Movie $movie)
     {
-        //
+        $genres = $movie->genres->pluck('id');
+        $movie->genres()->detach($genres);
+
+        $movie->delete();
+
+        session()->flash('success', 'Movie successfully deleted.');
+        return redirect('admin/movies');
     }
 }

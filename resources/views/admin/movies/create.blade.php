@@ -26,13 +26,11 @@
         <div class="form-group">
             {!! Form::label('genre', 'Genre', ['class' => 'col-sm-2 control-label']) !!}
             <div class="col-sm-10">
-                {!! Form::checkbox('genre_id[]', '1', null) !!} Action
-                {!! Form::checkbox('genre_id[]', '2', null) !!} Sci-Fi
-                {!! Form::checkbox('genre_id[]', '3', null) !!} Thriller
+                @foreach($genres as $id => $genre)
+                {!! Form::checkbox("genre_id[{$id}]", $id, null) !!} {{$genre}}
+                    @endforeach
             </div>
         </div>
-
-
 
         <div class="form-group">
             {!! Form::label('release_date', 'Release Date', ['class' => 'col-sm-2 control-label']) !!}
@@ -40,6 +38,14 @@
                 {!! Form::date('release_date', old('release_date'), ['class' => "form-control", 'placeholder'=>"Release Date"]) !!}
             </div>
         </div>
+
+        <div class="form-group">
+            {!! Form::label('country', 'Country', [ 'class'=>"col-sm-2 control-label"]) !!}
+            <div class="col-sm-10">
+                {!! Form::select('country_id', $countries, null, ['class'=>"form-control js-example-basic-single"]) !!}
+            </div>
+        </div>
+
     <!-- Taglines -->
         <div class="form-group">
             <label for="tagline" class="col-sm-2 control-label">Tagline</label>

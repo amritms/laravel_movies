@@ -28,12 +28,10 @@ class MovieStoreRequest extends FormRequest
                 'release_date' => 'date',
                 'storyline' => '',
                 'ratings' => '',
-                'keywords' => '',
                 'taglines' => '',
                 'image' => '',
                 'video' => '',
-//                'language_id' => 'required',
-//                'genre_id' => 'required'
+                'language_id' => 'integer',
         ];
     }
 }
