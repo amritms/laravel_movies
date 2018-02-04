@@ -46,11 +46,16 @@ class MovieController extends Controller
     {
         $input = $request->validated();
 
+        // save image
+        if($request->hasFile('image')){
+            $image = $request->file('image');
+            $input['image'] = time() . '.'. $image->getClientOriginalExtension();
+            $destination_path = public_path('movies/poster/');
+            $image->move($destination_path, $input['image']);
+        }
+
         $movie = Movie::create($input);
-
         $genre = request()->get('genre_id');
-
-        // genre - pivot
         $movie->genres()->attach($genre);
 
         session()->flash('success', 'Movie successfully created.');
@@ -79,7 +84,10 @@ class MovieController extends Controller
      */
     public function edit(Movie $movie)
     {
-        return view('admin.movies.edit', compact('movie'));
+        $countries = Country::pluck('name', 'id');
+        $genres = Genre::pluck('name', 'id');
+
+        return view('admin.movies.edit', compact('movie', 'genres', 'countries'));
     }
 
     /**
@@ -94,9 +102,12 @@ class MovieController extends Controller
     {
         $input = $request->validated();
 
-        session()->flash('success', 'Movie successfully edited.');
-
         $movie->update($input);
+
+        $genres = request('genre_id');
+        $movie->genres()->sync($genres);
+
+        session()->flash('success', 'Movie successfully edited.');
 
         return redirect('admin/movies');
     }

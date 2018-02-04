@@ -16,7 +16,7 @@ class Movie extends Model
      */
     public function country()
     {
-        return $this->hasOne(Country::class, 'id');
+        return $this->hasOne(Country::class, 'id', 'country_id');
     }
 
     public function genres()

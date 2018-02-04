@@ -11,7 +11,7 @@
                 <div class="row"><div class="col-md-12"><h2>Add Movies</h2></div></div>
                 <div class="row">
                     <div class="col-md-12">
-    {!! Form::open(['url' => 'admin/movies', 'method' => 'post', 'class' => 'form-horizontal']) !!}
+    {!! Form::open(['url' => 'admin/movies', 'method' => 'post', 'class' => 'form-horizontal', 'enctype' => 'multipart/form-data']) !!}
 
     <!-- Title -->
         <div class="form-group">

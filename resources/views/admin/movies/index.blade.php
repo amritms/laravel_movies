@@ -13,6 +13,7 @@
                         <thead>
                         <tr>
                             <th>Title</th>
+                            <th>Image</th>
                             <th>Release Date</th>
                             <th>Posted Date</th>
                             <th>Options</th>
@@ -22,6 +23,7 @@
                         @foreach($movies as $movie)
                         <tr>
                             <td><a href="{!! url("admin/movies/{$movie->id}")!!}">{{ $movie->name }}</a></td>
+                            <td><img src="{!! url('movies/poster/'.$movie->image)  !!}" class="img-thumbnail " style="width:100px;"/></td>
                             <td>{{ $movie->release_date }}</td>
                             <td>{{ $movie->created_at }}</td>
                             <td>

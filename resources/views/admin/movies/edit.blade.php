@@ -11,7 +11,7 @@
                 <div class="row"><div class="col-md-12"><h2>Add Movies</h2></div></div>
                 <div class="row">
                     <div class="col-md-12">
-    {!! Form::model($movie, ['url' => 'admin/movies/'.$movie->id, 'method' => 'put', 'class' => 'form-horizontal']) !!}
+    {!! Form::model($movie, ['url' => 'admin/movies/'.$movie->id, 'method' => 'put', 'class' => 'form-horizontal', 'enctype' => 'multipart/form-data']) !!}
 
     <!-- Title -->
         <div class="form-group">
@@ -26,18 +26,27 @@
         <div class="form-group">
             {!! Form::label('genre', 'Genre', ['class' => 'col-sm-2 control-label']) !!}
             <div class="col-sm-10">
-                {!! Form::select('genre_id', ['1' => 'Drama', '2' => 'Action'], null,['multiple']) !!}
+                @foreach($genres as $id => $genre)
+                    {!! Form::checkbox("genre_id[{$id}]", $id, in_array($id, $movie->genres->pluck('id')->toArray())) !!} {{$genre}}
+                @endforeach
             </div>
         </div>
-
 
 
         <div class="form-group">
-            {!! Form::label('release_year', 'Release Year', ['class' => 'col-sm-2 control-label']) !!}
+            {!! Form::label('release_date', 'Release Date', ['class' => 'col-sm-2 control-label']) !!}
             <div class="col-sm-10">
-                {!! Form::text('release_date', old('release_date'), ['class' => "form-control", 'placeholder'=>"Release Year", 'maxlength'=>"100"]) !!}
+                {!! Form::text('release_date', old('release_date'), ['class' => "form-control", 'placeholder'=>"Release Date", 'maxlength'=>"100"]) !!}
             </div>
         </div>
+
+        <div class="form-group">
+            {!! Form::label('country', 'Country', [ 'class'=>"col-sm-2 control-label"]) !!}
+            <div class="col-sm-10">
+                {!! Form::select('country_id', $countries, $movie->country_id, ['class'=>"form-control js-example-basic-single"]) !!}
+            </div>
+        </div>
+
     <!-- Taglines -->
         <div class="form-group">
             <label for="tagline" class="col-sm-2 control-label">Tagline</label>
@@ -52,17 +61,26 @@
                 {!! Form::textarea('storyline', null, ['class'=>"form-control", 'placeholder'=>"Multiple tagline with comma"]) !!}
             </div>
         </div>
-    {!! Form::label('ratings', 'Ratings') !!}
-    {!! Form::text('ratings', old('ratings')) !!}
 
-    {!! Form::label('language', 'Language') !!}
-    {!! Form::select('language_id', ['1' => 'English', '2' => 'Spanish']) !!}
+        <div class="form-group">
+            <label for="tagline" class="col-sm-2 control-label">Ratings</label>
+            <div class="col-sm-10">
+                {!! Form::text('ratings', old('ratings'), ['class' => "form-control", 'placeholder'=>"Ratings"]) !!}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {!! Form::label('language', 'Language', [ 'class'=>"col-sm-2 control-label"]) !!}
+            <div class="col-sm-10">
+                {!! Form::select('language_id', ['1' => 'English', '2' => 'Spanish'], null, ['class'=>"form-control js-example-basic-single"]) !!}
+            </div>
+        </div>
 
     <!-- Budget -->
         <div class="form-group">
             <label for="keywords" class="col-sm-2 control-label">Plot Keywords</label>
             <div class="col-sm-10">
-                {!! Form::select('keywords', [1=> 'world war two', 2 => 'soldier', 3 => 'evacuation'], old('keywords'), ['class'=>"form-control js-example-basic-multiple", 'multiple' => 'multiple']) !!}
+                {!! Form::select('keywords', [1=> 'world war two', 2 => 'soldier', 3 => 'evacuation'], null, ['class'=>"form-control js-example-basic-multiple", 'multiple' => 'multiple']) !!}
             </div>
         </div>
 

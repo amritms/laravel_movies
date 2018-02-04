@@ -18,7 +18,7 @@ Route::get('/', 'MovieController@index');
 Route::Resource('movies', 'MovieController', ['only' => ['index', 'show']]);
 
 // Admin routes
-Route::prefix('admin')->namespace('admin')->group(function(){
+Route::Middleware('Auth')->prefix('admin')->namespace('admin')->group(function(){
     Route::get('/', 'MovieController@index');
     Route::Resource('movies', 'MovieController');
 });

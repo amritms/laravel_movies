@@ -7,9 +7,14 @@
             <!-- Login -->
             <div class="col-md-12">
                 <div class="row">
+                    <div class="col-md-12"><img src="{!! url('movies/poster/'.$movie->image)  !!}" /></div>
                     <div class="col-md-12"><h2> {{$movie->name}} ({{$movie->release_date}})</h2></div>
-                    <div class="col-md-12"><h2>Country: {{$movie->country->name}}</h2></div>
+                    <div class="col-md-12"><h2>Country: {{optional($movie->country)->name}}</h2></div>
                     <div class="col-md-12"><h2>Language: {{$movie->language_id}}</h2></div>
+                    <div class="col-md-12"><h2>Genres: @foreach($movie->genres as $genre)
+                                <a href="{!! url('movie/genre/'.$genre->id) !!}"> {{$genre->name}} </a>
+                            @endforeach</h2></div>
+
                 </div>
 
             </div>
